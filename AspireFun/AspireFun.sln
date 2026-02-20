@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireFun.AppHost", "AspireFun.AppHost\AspireFun.AppHost.csproj", "{B376AAB4-10D7-4D28-91BC-D07B657B81DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireFun.Server", "AspireFun.Server\AspireFun.Server.csproj", "{BDAF3262-F4DB-4132-AE2B-6E9D378D5FAD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B376AAB4-10D7-4D28-91BC-D07B657B81DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B376AAB4-10D7-4D28-91BC-D07B657B81DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B376AAB4-10D7-4D28-91BC-D07B657B81DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B376AAB4-10D7-4D28-91BC-D07B657B81DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDAF3262-F4DB-4132-AE2B-6E9D378D5FAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDAF3262-F4DB-4132-AE2B-6E9D378D5FAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDAF3262-F4DB-4132-AE2B-6E9D378D5FAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDAF3262-F4DB-4132-AE2B-6E9D378D5FAD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

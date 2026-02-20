@@ -1,0 +1,15 @@
+<ng-container *ngIf="data1$ | async as data1; else waiting"
+  >Success {{data1.testBool}}
+<div> 
+<ng-container *ngIf="data2$ | async as data2; else innerWaiting"
+    >Inner Success {{data2.testBool}}
+  </ng-container>
+  <ng-template #innerWaiting
+    >...Inner waiting<ng-template> </ng-template
+  ></ng-template>
+
+</div>
+  
+</ng-container>
+
+<ng-template #waiting>...waiting<ng-template> </ng-template></ng-template>
