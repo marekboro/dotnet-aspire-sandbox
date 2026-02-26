@@ -4,7 +4,7 @@ namespace AspireFun.Server.Models;
 
 public record TestResponse(string TestMessage, int TestNumber, bool TestBool)
 {
-    public static TestResponse CreateTestResponse() 
+    public static TestResponse CreateTestResponse()
     {
         var random1 = Random.Shared.Next(0, 10);
         var random2 = Random.Shared.Next(0, 10);
