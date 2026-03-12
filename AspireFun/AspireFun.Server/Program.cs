@@ -1,12 +1,21 @@
+using AspireFun.Server.Extensions;
 using AspireFun.Server.Infrastructure;
-using AspireFun.Server.Models;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<MyLocalDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+builder.Services.AddScoped<IMyRepository, MyRepository>();
+builder.Services.AddTransient<ISeeder, Seeder>();
+
+builder.Services.AddControllers();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddMySwaggerGen();
 
 // Add service defaults & Aspire client integrations.
 builder.AddServiceDefaults();
@@ -29,14 +38,22 @@ app.UseExceptionHandler();
 
 if (app.Environment.IsDevelopment())
 {
+    Console.WriteLine("- --> --> |---------| <-- <-- -");
+    Console.WriteLine("= == ===> DEVELOPMENT <=== == =");
+    Console.WriteLine("- --> --> |---------| <-- <-- -");
+    
     app.MapOpenApi();
+    app.UseSwagger();
+    // TODO: add outh.
+    // app.MapSwagger().RequireAuthorization();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+        options.RoutePrefix = string.Empty;
+    });
 }
 
-// TODO: add a controller to get data from the local DB and replace this setup with 
-// api.MapControllers();
-var api = app.MapGroup("/api");
-api.MapGet("get-test-one", TestResponse.CreateTestResponse).WithName("GetTestOne");
-api.MapGet("get-test-two", TestResponse.CreateTestResponse).WithName("GetTestTwo");
+app.MapControllers();
 
 app.UseHttpsRedirection();
 app.MapDefaultEndpoints();
@@ -49,4 +66,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseFileServer();
+
+var seeder = app.Services.GetRequiredService<ISeeder>();
+await seeder.Seed();
+
 app.Run();
+

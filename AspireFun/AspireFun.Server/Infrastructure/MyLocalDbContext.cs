@@ -35,7 +35,7 @@ public class MyLocalDbContext : DbContext
             .HasKey(e => new { e.CompanyId, e.EmployeeId });
         modelBuilder.Entity<CompanyEmployee>()
             .HasOne(e => e.Company)
-            .WithMany(c => c.Employees)
+            .WithMany(c => c.CompanyEmployees)
             .HasForeignKey(e => e.CompanyId);
         modelBuilder.Entity<CompanyEmployee>()
             .HasOne(e => e.Employee)
@@ -43,7 +43,7 @@ public class MyLocalDbContext : DbContext
             .HasForeignKey(e => e.EmployeeId);
     }
 
-    public DbSet<Company> Companies { get; set; }
-    public DbSet<Employee> Employees { get; set; }
-    public DbSet<CompanyEmployee> CompanyEmployees { get; set; }
+    public virtual DbSet<Company> Companies { get; set; }
+    public virtual DbSet<Employee> Employees { get; set; }
+    public virtual DbSet<CompanyEmployee> CompanyEmployees { get; set; }
 }

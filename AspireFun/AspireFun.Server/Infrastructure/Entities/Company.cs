@@ -5,8 +5,15 @@ namespace AspireFun.Server.Infrastructure.Entities;
 public class Company
 {
     public Guid Id { get; set; }
-    public AccountType Type { get; set; }
+    public CompanyType Type { get; set; }
     public string Name { get; set; }
+    
+    public virtual ICollection<CompanyEmployee> CompanyEmployees { get; set; }
 
-    public virtual ICollection<CompanyEmployee> Employees { get; set; }
+    public Company(CompanyType type, string name)
+    {
+        Id = Guid.NewGuid();    
+        Type = type;
+        Name = name;
+    }
 }
