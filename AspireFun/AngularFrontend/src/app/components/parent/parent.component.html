@@ -1,0 +1,10 @@
+<p>parent works!</p>
+<app-child
+  (onAction)="handleEvent($event)"
+  childName="Inigo Montoya"
+></app-child>
+<app-child (onAction)="handleEvent($event)" childName="Westley"></app-child>
+<ng-container *ngIf="complaintResponse$ | async as cr; else good">
+  <p>{{ cr }}</p>
+</ng-container>
+<ng-template #good>You are a good boy my Inigo</ng-template>

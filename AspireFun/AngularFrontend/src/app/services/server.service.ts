@@ -1,5 +1,12 @@
 ﻿import { Injectable, inject } from '@angular/core';
-import { combineLatest, map, Observable, timer } from 'rxjs';
+import {
+  BehaviorSubject,
+  combineLatest,
+  map,
+  Observable,
+  of,
+  timer,
+} from 'rxjs';
 import { AspireServerApiHttpClient } from '../apiHttpClient';
 import { TestResponse } from '../models/testResponse';
 
@@ -23,4 +30,12 @@ export class ServerService {
       map(([data, _]) => data),
     );
   };
+
+  public numberBehaviourSubject$: BehaviorSubject<number | null> =
+    new BehaviorSubject<number | null>(null);
+
+  public funkyData$: Observable<number> = combineLatest([
+    of(1),
+    this.delayByMiliseconds$,
+  ]).pipe(map(([data, _]) => data));
 }
