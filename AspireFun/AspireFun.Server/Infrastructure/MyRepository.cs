@@ -13,7 +13,7 @@ public interface IMyRepository
     public Task<List<CompanyModel>> GetCompanies();
     public Task<int> GetCompanyCout();
     public Task<int> GetEmployeeCout();
-    public Task<CompanyModel>? GetCompany(Guid companyId);
+    public Task<CompanyModel?> GetCompany(Guid companyId);
     public Task<List<Employee>> GetEmployees();
     public Task AddCompany(Company company);
     public Task AddEmployee(Employee employee, Guid companyId);
@@ -30,20 +30,33 @@ public class MyRepository : IMyRepository
     
     private IEnumerable<Employee> Employees => _myLocalDbContext.Employees.Include(e => e.CompanyEmployees);
 
-    public Task<CompanyModel>? GetCompany(Guid companyId)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="companyId">Id of the compant to retireve</param>
+    /// <returns></returns>
+    public Task<CompanyModel?> GetCompany(Guid companyId)
     {
-        var companyEntity = _myLocalDbContext.Companies.SingleOrDefault(c => c.Id == companyId);
-        if (companyEntity == null)
+        try
         {
-            return null;
-        }
+            var companyEntity = _myLocalDbContext.Companies.SingleOrDefault(c => c.Id == companyId);
+            if (companyEntity == null)
+            {
+                return Task.FromResult<CompanyModel?>(null);
+            }
 
-        var employeeIds = _myLocalDbContext.CompanyEmployees.Where(ce => ce.CompanyId == companyEntity.Id)
-            .Select(ce => ce.EmployeeId).ToList();
-        var employees = _myLocalDbContext.Employees.Where(e => employeeIds.Contains(e.Id)).Select(e => e.ToBasicModel())
-            .ToList();
-        var company = companyEntity.ToModel(employees);
-        return Task.FromResult(company);
+            var employeeIds = _myLocalDbContext.CompanyEmployees.Where(ce => ce.CompanyId == companyEntity.Id)
+                .Select(ce => ce.EmployeeId).ToList();
+            
+            var employees = Employees.Where(e => employeeIds.Contains(e.Id)).Select(e => e.ToBasicModel())
+                .ToList();
+            var company = companyEntity.ToModel(employees);
+            return Task.FromResult(company)!;
+        }
+        catch (Exception exception)
+        {
+            return Task.FromException<CompanyModel?>(exception);
+        }
     }
 
     public Task<List<CompanyModel>> GetCompanies()
@@ -77,9 +90,7 @@ public class MyRepository : IMyRepository
 
     public Task<List<Employee>> GetEmployees()
     {
-        var employees = _myLocalDbContext.Employees
-            .Include(e => e.CompanyEmployees)
-            .ToList();
+        var employees = Employees.ToList();
         return Task.FromResult(employees);
     }
 
