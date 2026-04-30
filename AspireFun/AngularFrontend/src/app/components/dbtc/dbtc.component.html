@@ -1,0 +1,35 @@
+<div>{{ testData1 }}</div>
+<div [innerText]="testData2 + testData1"></div>
+
+<div>
+  <input [(ngModel)]="textFromInput" type="text" [disabled]="isDisabled" />
+</div>
+
+<div><button (click)="clickFunction()">ClickMe</button></div>
+<div>
+  <button (mouseover)="mouseOverFunction()">
+    Personal space crossed count {{ testData3 }}
+  </button>
+</div>
+
+<div appHighlightfun>{{ getCharCount() }}</div>
+<p appHighlightfun>{{ getCharCount() }}</p>
+
+<ng-container *ngIf="inputLengthAsObservable$ | async as len; else noLen">
+  <div>=>{{ len }}<=</div>
+</ng-container>
+<ng-template #noLen>Banana</ng-template>
+
+<ul [ngSwitch]="lenghts.length % 2 == 0">
+  <li *ngSwitchCase="true">Even</li>
+  <li *ngSwitchCase="false">Odd</li>
+  <li *ngFor="let len of lenghts">{{ len }}</li>
+</ul>
+
+<div>{{ lenghts.length }} => {{ lenghts | myTestPipe }}</div>
+<div>{{ lenghts.length }} => {{ lenghts | myTestPipe : "invert" | boolToString | uppercase}}</div>
+
+<div [ngStyle]="{ 'background-color': getColor() }">StyleTest</div>
+<div [ngClass]="getClass()">ClassTest</div>
+
+<app-parent></app-parent>
