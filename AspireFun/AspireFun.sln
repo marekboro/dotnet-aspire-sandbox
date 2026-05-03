@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireFun.AppHost", "Aspire
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireFun.Server", "AspireFun.Server\AspireFun.Server.csproj", "{BDAF3262-F4DB-4132-AE2B-6E9D378D5FAD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "WpfApp\WpfApp.csproj", "{F43D5B0A-61DE-4393-8B2D-0C42442257A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{BDAF3262-F4DB-4132-AE2B-6E9D378D5FAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDAF3262-F4DB-4132-AE2B-6E9D378D5FAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDAF3262-F4DB-4132-AE2B-6E9D378D5FAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F43D5B0A-61DE-4393-8B2D-0C42442257A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F43D5B0A-61DE-4393-8B2D-0C42442257A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F43D5B0A-61DE-4393-8B2D-0C42442257A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F43D5B0A-61DE-4393-8B2D-0C42442257A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
