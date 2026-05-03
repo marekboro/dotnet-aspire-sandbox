@@ -5,8 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="450" Width="800"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid Margin="20">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Current Number:" FontSize="14" Margin="0,0,0,5" TextAlignment="Center" />
+            <TextBlock Text="{Binding Counter}" FontSize="28" FontWeight="Bold" Margin="0,0,0,25"
+                       TextAlignment="Center" />
+            <Button
+                Content="Add 1"
+                Width="180" Height="35"
+                Margin="0,0,0,10"
+                Click="Add_One_OnClick">
+
+            </Button>
+            <Button
+                Content="Remove 2"
+                Width="180" Height="35"
+                Margin="0,0,0,10"
+                IsEnabled="{Binding EnabledButtonTwo}"
+                Click="Remove_Two_OnClick">
+            </Button>
+        </StackPanel>
 
     </Grid>
 </Window>
